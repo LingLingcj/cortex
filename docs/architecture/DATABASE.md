@@ -2,12 +2,12 @@
 
 ## 概述
 
-Personal Hub 使用 **PostgreSQL** 作为主数据库，通过 **Prisma ORM** 进行数据建模和访问。
+Cortex 使用 **PostgreSQL** 作为主数据库，通过 **Prisma ORM** 进行数据建模和访问。
 
 ## 数据库连接
 
 ```
-DATABASE_URL="postgresql://postgres:postgres@localhost:5432/personal_hub?schema=public"
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/cortex?schema=public"
 ```
 
 ## 数据模型
@@ -320,16 +320,16 @@ const posts = await prisma.post.findMany({
 ### 定期备份 (生产环境)
 ```bash
 # 导出数据
-pg_dump -U postgres personal_hub > backup.sql
+pg_dump -U postgres cortex > backup.sql
 
 # 恢复数据
-psql -U postgres personal_hub < backup.sql
+psql -U postgres cortex < backup.sql
 ```
 
 ### Docker 数据卷备份
 ```bash
 docker run --rm \
-  -v personal_hub_postgres_data:/data \
+  -v cortex_postgres_data:/data \
   -v $(pwd):/backup \
   alpine tar czf /backup/postgres-backup.tar.gz /data
 ```

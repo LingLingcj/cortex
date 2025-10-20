@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Personal Hub - 一键停止脚本
+# Cortex - 一键停止脚本
 # 用法: ./stop.sh [选项]
 # 选项:
 #   --all      停止所有服务 (默认)
@@ -43,7 +43,7 @@ log_error() {
 show_banner() {
     echo -e "${BLUE}"
     echo "╔═══════════════════════════════════════════╗"
-    echo "║     Personal Hub - 一键停止脚本          ║"
+    echo "║     Cortex - 一键停止脚本                ║"
     echo "╚═══════════════════════════════════════════╝"
     echo -e "${NC}"
 }
@@ -133,7 +133,7 @@ clean_data() {
 
 # 显示帮助
 show_help() {
-    echo "Personal Hub - 一键停止脚本"
+    echo "Cortex - 一键停止脚本"
     echo ""
     echo "用法: ./stop.sh [选项]"
     echo ""

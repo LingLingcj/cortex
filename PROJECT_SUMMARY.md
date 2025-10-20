@@ -1,4 +1,4 @@
-# Personal Hub - 项目总结
+# Cortex - 项目总结
 
 ## 🎉 项目初始化完成
 
@@ -354,5 +354,4 @@ npm run dev
 **开始开发新功能**: 查看 [开发指南](./docs/DEVELOPMENT.md)
 
 **理解系统设计**: 查看 [架构文档](./docs/architecture/ARCHITECTURE.md)
-
 

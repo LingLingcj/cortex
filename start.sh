@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Personal Hub - 一键启动脚本
+# Cortex - 一键启动脚本
 # 用法: ./start.sh [选项]
 # 选项:
 #   --full    启动所有服务 (基础设施 + 后端 + 前端)
@@ -42,7 +42,7 @@ log_error() {
 show_banner() {
     echo -e "${BLUE}"
     echo "╔═══════════════════════════════════════════╗"
-    echo "║     Personal Hub - 一键启动脚本          ║"
+    echo "║     Cortex - 一键启动脚本                ║"
     echo "║   多功能个人网站系统 (React+NestJS+Go)   ║"
     echo "╚═══════════════════════════════════════════╝"
     echo -e "${NC}"
@@ -288,7 +288,7 @@ show_access_info() {
 
 # 显示帮助
 show_help() {
-    echo "Personal Hub - 一键启动脚本"
+    echo "Cortex - 一键启动脚本"
     echo ""
     echo "用法: ./start.sh [选项]"
     echo ""

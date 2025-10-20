@@ -41,7 +41,7 @@ cp .env.example .env
 
 编辑 `.env` 文件:
 ```env
-DATABASE_URL="postgresql://postgres:postgres@localhost:5432/personal_hub?schema=public"
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/cortex?schema=public"
 JWT_SECRET="your-secret-key-change-in-production"
 JWT_EXPIRES_IN="7d"
 PORT=3000

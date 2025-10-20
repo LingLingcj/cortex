@@ -1,7 +1,7 @@
 {
   "name": "main-api",
   "version": "1.0.0",
-  "description": "Main API service for Personal Hub",
+  "description": "Main API service for Cortex",
   "author": "lingrj",
   "license": "MIT",
   "scripts": {

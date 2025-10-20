@@ -1,6 +1,6 @@
 # 快速开始
 
-本指南将帮助你在 10 分钟内启动 Personal Hub 项目。
+本指南将帮助你在 10 分钟内启动 Cortex 项目。
 
 ## 第一步: 环境准备
 
@@ -146,8 +146,8 @@ curl -X POST http://localhost:3000/api/posts \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
-    "title": "Hello Personal Hub",
-    "slug": "hello-personal-hub",
+    "title": "Hello Cortex",
+    "slug": "hello-cortex",
     "content": "# Welcome\n\nThis is my first post!",
     "excerpt": "My first blog post",
     "isPublic": true,
@@ -183,7 +183,7 @@ docker-compose logs postgres
 
 **确保** `.env` 文件中的连接字符串正确:
 ```
-DATABASE_URL="postgresql://postgres:postgres@localhost:5432/personal_hub?schema=public"
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/cortex?schema=public"
 ```
 
 ### 问题 3: 前端无法请求后端
@@ -206,7 +206,7 @@ npx prisma migrate reset  # 重置数据库
 
 ## 下一步
 
-现在你已经成功运行了 Personal Hub！可以:
+现在你已经成功运行了 Cortex！可以:
 
 1. 📖 阅读 [开发指南](./DEVELOPMENT.md) 了解如何开发新功能
 2. 🏗️ 查看 [架构文档](./architecture/ARCHITECTURE.md) 理解系统设计

@@ -1,14 +1,14 @@
 # Infrastructure
 
-This directory contains infrastructure configurations for the Personal Hub project.
+This directory contains infrastructure configurations for the Cortex project.
 
 ## Services
 
 ### PostgreSQL (Port 5432)
 - **User**: postgres
 - **Password**: postgres
-- **Database**: personal_hub
-- **Connection URL**: `postgresql://postgres:postgres@localhost:5432/personal_hub`
+- **Database**: cortex
+- **Connection URL**: `postgresql://postgres:postgres@localhost:5432/cortex`
 
 ### Redis (Port 6379)
 - **Host**: localhost
@@ -55,7 +55,7 @@ docker-compose down -v
 
 ### Access PostgreSQL CLI
 ```bash
-docker exec -it personal-hub-db psql -U postgres -d personal_hub
+docker exec -it cortex-db psql -U postgres -d cortex
 ```
 
 ### Run migrations (from main-api directory)
@@ -75,7 +75,7 @@ npx prisma studio
 
 ### Access Redis CLI
 ```bash
-docker exec -it personal-hub-redis redis-cli
+docker exec -it cortex-redis redis-cli
 ```
 
 ### Common Redis commands
@@ -97,7 +97,7 @@ FLUSHALL
 
 1. Access MinIO Console at http://localhost:9001
 2. Login with `minioadmin` / `minioadmin`
-3. Create a bucket named `personal-hub`
+3. Create a bucket named `cortex`
 4. Set bucket policy to public (for images)
 
 ## Troubleshooting
