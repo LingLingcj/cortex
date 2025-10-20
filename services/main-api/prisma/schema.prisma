@@ -1,0 +1,198 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ==================== User & Auth ====================
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String
+  avatar    String?
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  posts         Post[]
+  subscriptions Subscription[]
+  mediaItems    MediaItem[]
+  codeSnippets  CodeSnippet[]
+  articles      Article[]
+  notes         Note[]
+  settings      Settings?
+
+  @@map("users")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model Settings {
+  id     String @id @default(uuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  theme           String  @default("light")
+  emailNotifications Boolean @default(true)
+  language        String  @default("en")
+  timezone        String  @default("UTC")
+
+  @@map("settings")
+}
+
+// ==================== Blog ====================
+
+model Post {
+  id        String   @id @default(uuid())
+  title     String
+  slug      String   @unique
+  content   String
+  excerpt   String?
+  coverImage String?
+  isPublic  Boolean  @default(false)
+  isDraft   Boolean  @default(true)
+  views     Int      @default(0)
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  tags      Tag[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([authorId])
+  @@index([slug])
+  @@map("posts")
+}
+
+model Tag {
+  id    String @id @default(uuid())
+  name  String @unique
+  posts Post[]
+
+  @@map("tags")
+}
+
+// ==================== Subscriptions ====================
+
+model Subscription {
+  id              String   @id @default(uuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name            String
+  description     String?
+  amount          Float
+  currency        String   @default("USD")
+  billingCycle    BillingCycle
+  nextBillingDate DateTime
+  category        String?
+  icon            String?
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([userId])
+  @@map("subscriptions")
+}
+
+enum BillingCycle {
+  MONTHLY
+  YEARLY
+}
+
+// ==================== Media ====================
+
+model MediaItem {
+  id          String     @id @default(uuid())
+  userId      String
+  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type        MediaType
+  title       String
+  creator     String?    // author/director/artist
+  coverUrl    String?
+  status      MediaStatus @default(WANT)
+  rating      Float?
+  review      String?
+  startDate   DateTime?
+  finishDate  DateTime?
+  tags        String[]
+  externalId  String?    // Douban/TMDB ID
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@index([userId])
+  @@index([type])
+  @@map("media_items")
+}
+
+enum MediaType {
+  BOOK
+  MOVIE
+  TV_SHOW
+  MUSIC
+}
+
+enum MediaStatus {
+  WANT
+  DOING
+  DONE
+}
+
+// ==================== Knowledge ====================
+
+model CodeSnippet {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title       String
+  description String?
+  code        String
+  language    String
+  tags        String[]
+  isPublic    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId])
+  @@map("code_snippets")
+}
+
+model Article {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  url       String
+  title     String
+  excerpt   String?
+  coverUrl  String?
+  tags      String[]
+  isRead    Boolean  @default(false)
+  savedAt   DateTime @default(now())
+
+  @@index([userId])
+  @@map("articles")
+}
+
+model Note {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  content   String
+  tags      String[]
+  folder    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@map("notes")
+}
