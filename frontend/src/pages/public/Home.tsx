@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <div style={{ textAlign: 'center', padding: '50px' }}>
       <RocketOutlined style={{ fontSize: '80px', color: '#1890ff', marginBottom: '20px' }} />
-      <Title level={1}>Welcome to Personal Hub</Title>
+      <Title level={1}>Welcome to Cortex</Title>
       <Paragraph style={{ fontSize: '18px', maxWidth: '600px', margin: '0 auto 30px' }}>
         Your all-in-one personal space for managing habits, subscriptions, media, knowledge, and more.
         A modern platform built with React, Node.js, Go, and Rust.

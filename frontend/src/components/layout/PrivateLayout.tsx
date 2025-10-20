@@ -57,7 +57,7 @@ const PrivateLayout = () => {
           fontSize: collapsed ? '14px' : '18px',
           fontWeight: 'bold'
         }}>
-          {collapsed ? 'PH' : 'Personal Hub'}
+          {collapsed ? 'CX' : 'Cortex'}
         </div>
         <Menu
           theme="dark"

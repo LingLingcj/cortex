@@ -9,7 +9,7 @@ const PublicLayout = () => {
     <Layout style={{ minHeight: '100vh' }}>
       <Header style={{ display: 'flex', alignItems: 'center' }}>
         <div style={{ color: 'white', fontSize: '20px', marginRight: '50px' }}>
-          Personal Hub
+          Cortex
         </div>
         <Menu
           theme="dark"
@@ -27,7 +27,7 @@ const PublicLayout = () => {
         <Outlet />
       </Content>
       <Footer style={{ textAlign: 'center' }}>
-        Personal Hub ©{new Date().getFullYear()} - A Modern Personal Space
+        Cortex ©{new Date().getFullYear()} - A Modern Personal Space
       </Footer>
     </Layout>
   );
