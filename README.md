@@ -19,9 +19,9 @@
 ## 🏗️ 技术架构
 
 ### 前端
-- **React 18** + **TypeScript**
-- **Vite 5** 构建工具
-- **React Router 6** 路由管理
+- **React 19** + **TypeScript**
+- **Vite 7** 构建工具
+- **React Router 7** 路由管理
 - **Zustand** 状态管理
 - **Ant Design** UI 组件库
 - **TanStack Query** 数据请求
