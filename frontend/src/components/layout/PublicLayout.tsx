@@ -1,6 +1,6 @@
 import { Outlet, Link } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
-import { HomeOutlined, BookOutlined, LoginOutlined } from '@ant-design/icons';
+import { HomeOutlined, BookOutlined, LoginOutlined, UserAddOutlined } from '@ant-design/icons';
 
 const { Header, Content, Footer } = Layout;
 
@@ -20,6 +20,7 @@ const PublicLayout = () => {
             { key: 'home', icon: <HomeOutlined />, label: <Link to="/">Home</Link> },
             { key: 'blog', icon: <BookOutlined />, label: <Link to="/blog">Blog</Link> },
             { key: 'login', icon: <LoginOutlined />, label: <Link to="/login">Login</Link> },
+            { key: 'register', icon: <UserAddOutlined />, label: <Link to="/register">Register</Link> },
           ]}
         />
       </Header>

@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { Outlet, Link, useNavigate } from 'react-router-dom';
 import { Layout, Menu, Avatar, Dropdown } from 'antd';
+import type { MenuProps } from 'antd';
 import {
   DashboardOutlined,
   CheckSquareOutlined,
   DollarOutlined,
   VideoCameraOutlined,
   BookOutlined,
+  FileTextOutlined,
   ToolOutlined,
   SettingOutlined,
   LogoutOutlined,
@@ -26,7 +28,7 @@ const PrivateLayout = () => {
     navigate('/login');
   };
 
-  const userMenuItems = [
+  const userMenuItems: MenuProps['items'] = [
     {
       key: 'profile',
       icon: <UserOutlined />,
@@ -68,6 +70,7 @@ const PrivateLayout = () => {
             { key: 'habits', icon: <CheckSquareOutlined />, label: <Link to="/app/habits">Habits</Link> },
             { key: 'subs', icon: <DollarOutlined />, label: <Link to="/app/subs">Subscriptions</Link> },
             { key: 'media', icon: <VideoCameraOutlined />, label: <Link to="/app/media">Media</Link> },
+            { key: 'blog', icon: <FileTextOutlined />, label: <Link to="/app/blog">Blog</Link> },
             { key: 'knowledge', icon: <BookOutlined />, label: <Link to="/app/knowledge">Knowledge</Link> },
             { key: 'tools', icon: <ToolOutlined />, label: <Link to="/app/tools">Tools</Link> },
           ]}

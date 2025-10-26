@@ -1,27 +1,38 @@
 import { Form, Input, Button, Card, Typography, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuthStore } from '../../stores/authStore';
+import api from '../../services/api';
 
 const { Title } = Typography;
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { login } = useAuthStore();
 
-  const onFinish = (values: { email: string; password: string }) => {
-    // TODO: Call actual login API
-    console.log('Login attempt:', values);
+  const onFinish = async (values: { email: string; password: string }) => {
+    try {
+      // 1) call /auth/login to get JWT
+      const loginRes = await api.post('/auth/login', values);
+      const token: string | undefined = loginRes.data?.token;
+      if (!token) throw new Error('No token returned');
 
-    // Mock login for now
-    login('mock-jwt-token', {
-      id: '1',
-      email: values.email,
-      name: 'Demo User',
-    });
+      // 2) fetch profile using the token
+      const profileRes = await api.get('/auth/profile', {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
-    message.success('Login successful!');
-    navigate('/app/dashboard');
+      login(token, profileRes.data);
+      message.success('Login successful!');
+
+      // redirect to previous page if exists
+      const from = (location.state as any)?.from?.pathname || '/app/dashboard';
+      navigate(from, { replace: true });
+    } catch (err: any) {
+      const msg = err?.response?.data?.message || err?.message || 'Login failed';
+      message.error(Array.isArray(msg) ? msg[0] : msg);
+    }
   };
 
   return (
