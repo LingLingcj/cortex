@@ -38,6 +38,9 @@ const Register = () => {
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh' }}>
       <Card style={{ width: 480 }}>
         <Title level={2} style={{ textAlign: 'center' }}>Create Account</Title>
+        <Typography.Text type="secondary" style={{ display: 'block', textAlign: 'center', marginBottom: 24 }}>
+          注册仅限管理员邮箱，其他用户请以游客身份浏览
+        </Typography.Text>
         <Form<RegisterForm>
           name="register"
           onFinish={onFinish}

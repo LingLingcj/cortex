@@ -4,6 +4,7 @@ target/
 vendor/
 
 # Build outputs
+.demo
 dist/
 build/
 *.exe
