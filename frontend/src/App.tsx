@@ -1,6 +1,6 @@
 import { RouterProvider } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ConfigProvider } from 'antd';
+import { ConfigProvider, App as AntdApp } from 'antd';
 import { router } from './router';
 
 const queryClient = new QueryClient({
@@ -22,7 +22,10 @@ function App() {
           },
         }}
       >
-        <RouterProvider router={router} />
+        {/* AntD App provides context for message, modal, notification in v5 */}
+        <AntdApp>
+          <RouterProvider router={router} />
+        </AntdApp>
       </ConfigProvider>
     </QueryClientProvider>
   );

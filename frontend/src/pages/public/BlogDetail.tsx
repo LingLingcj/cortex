@@ -117,7 +117,7 @@ const BlogDetail = () => {
           boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
           border: 'none'
         }}
-        bodyStyle={{ padding: '32px' }}
+        styles={{ body: { padding: '32px' } }}
       >
         <div
           className="blog-content"
@@ -149,4 +149,3 @@ const BlogDetail = () => {
 };
 
 export default BlogDetail;
-

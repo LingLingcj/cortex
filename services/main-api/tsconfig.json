@@ -10,7 +10,9 @@
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
-    "ignoreDeprecations": "6.0",
+    // Remove invalid ignoreDeprecations value that breaks tsc on TS 5.x.
+    // If you need to silence TS deprecation warnings in the future, use:
+    // "ignoreDeprecations": "5.0"
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,

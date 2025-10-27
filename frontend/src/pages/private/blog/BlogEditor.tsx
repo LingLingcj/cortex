@@ -9,7 +9,7 @@ import {
   Typography,
   Switch,
   Select,
-  message,
+  // message: avoid static; we'll use App.useApp()
   Row,
   Col,
   Divider,
@@ -35,22 +35,20 @@ import {
   UnorderedListOutlined,
   FileTextOutlined,
   SettingOutlined,
-  PreviewOutlined,
   QuestionCircleOutlined,
   ReloadOutlined,
   CopyOutlined,
   FullscreenOutlined,
-  ExitFullscreenOutlined,
-  PublicOutlined,
-  DraftsOutlined,
-  AutoSaveOutlined,
+  FullscreenExitOutlined,
 } from '@ant-design/icons';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { App as AntdApp } from 'antd';
 import { createPost, getPostById, updatePost } from '../../../services/posts';
 import type { CreatePostInput, Post, UpdatePostInput } from '../../../types/post';
 import { miniMarkdown } from '../../../utils/markdown';
 
-const { Title, Paragraph } = Typography;
+// Pull in AntD Typography components we actually use
+const { Title, Paragraph, Text } = Typography;
 const { TextArea } = Input;
 
 // Minimal slugify helper: lower-case, spaces -> '-', remove non-alphanum/-
@@ -91,6 +89,7 @@ const BlogEditor = () => {
   const editing = Boolean(id);
   const navigate = useNavigate();
   const qc = useQueryClient();
+  const { message, modal } = AntdApp.useApp();
   const [form] = Form.useForm<CreatePostInput & { id?: string }>();
   const [liveSlug, setLiveSlug] = useState('');
   const [content, setContent] = useState('');
@@ -302,9 +301,9 @@ const BlogEditor = () => {
           border: 'none',
           borderRadius: 12
         }}
-        bodyStyle={{ padding: '16px 24px' }}
+        styles={{ body: { padding: '16px 24px' } }}
       >
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: 'white' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: 'white', flexWrap: 'wrap', gap: 12 }}>
           <div>
             <Title level={3} style={{ color: 'white', margin: 0 }}>
               {editing ? '✏️ 编辑文章' : '📝 创建新文章'}
@@ -315,9 +314,9 @@ const BlogEditor = () => {
               </Text>
             )}
           </div>
-          <Space>
+          <Space wrap>
             <Button
-              icon={fullscreen ? <ExitFullscreenOutlined /> : <FullscreenOutlined />}
+              icon={fullscreen ? <FullscreenExitOutlined /> : <FullscreenOutlined />}
               onClick={() => setFullscreen(!fullscreen)}
               style={{ color: 'white', border: '1px solid rgba(255,255,255,0.3)' }}
             >
@@ -500,8 +499,8 @@ const BlogEditor = () => {
           {/* Right Panel - Editor */}
           <Col xs={24} lg={16}>
             <Card
-              style={{ height: 'calc(100vh - 200px)', minHeight: 600 }}
-              bodyStyle={{ padding: 0, height: '100%' }}
+              style={{ height: 'calc(100vh - 220px)', minHeight: 700 }}
+              styles={{ body: { padding: 0, height: '100%' } }}
             >
               {/* Editor Toolbar */}
               <div style={{
@@ -542,7 +541,7 @@ const BlogEditor = () => {
                       size="small"
                       icon={<QuestionCircleOutlined />}
                       onClick={() => {
-                        Modal.info({
+                        modal.info({
                           title: 'Markdown 语法参考',
                           width: 600,
                           content: (
@@ -585,12 +584,13 @@ const BlogEditor = () => {
                         style={{
                           border: 'none',
                           resize: 'none',
-                          height: '100%',
-                          fontFamily: 'Monaco, Consolas, "Courier New", monospace',
+                          minHeight: 480,
+                          fontFamily: 'Monaco, Consolas, \"Courier New\", monospace',
                           fontSize: 14,
                           lineHeight: 1.6,
                           padding: 16
                         }}
+                        autoSize={{ minRows: 18, maxRows: 50 }}
                       />
                     </Form.Item>
                   </div>

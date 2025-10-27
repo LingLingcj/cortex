@@ -28,6 +28,7 @@ Thumbs.db
 logs/
 *.log
 npm-debug.log*
+*.pid
 
 # Database
 *.db

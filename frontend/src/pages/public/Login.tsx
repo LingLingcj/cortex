@@ -1,4 +1,4 @@
-import { Form, Input, Button, Card, Typography, message } from 'antd';
+import { Form, Input, Button, Card, Typography, App as AntdApp } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuthStore } from '../../stores/authStore';
@@ -7,6 +7,7 @@ import api from '../../services/api';
 const { Title } = Typography;
 
 const Login = () => {
+  const { message } = AntdApp.useApp();
   const navigate = useNavigate();
   const location = useLocation();
   const { login } = useAuthStore();

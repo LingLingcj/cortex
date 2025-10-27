@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { Button, Table, Tag, Space, Popconfirm, message, Typography } from 'antd';
+import { Button, Table, Tag, Space, Popconfirm, Typography, App as AntdApp } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { listPosts, deletePost } from '../../../services/posts';
@@ -10,6 +10,7 @@ const { Title } = Typography;
 const BlogList = () => {
   const navigate = useNavigate();
   const qc = useQueryClient();
+  const { message } = AntdApp.useApp();
 
   const { data, isLoading } = useQuery<Post[]>({
     queryKey: ['posts', 'all'],
@@ -95,4 +96,3 @@ const BlogList = () => {
 };
 
 export default BlogList;
-

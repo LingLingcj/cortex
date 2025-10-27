@@ -67,7 +67,7 @@ const Blog = () => {
               display: 'flex',
               flexDirection: 'column'
             }}
-            bodyStyle={{ flex: 1, display: 'flex', flexDirection: 'column' }}
+            styles={{ body: { flex: 1, display: 'flex', flexDirection: 'column' } }}
             cover={
               <div style={{
                 height: '200px',
